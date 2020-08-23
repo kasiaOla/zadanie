@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ExchangeRatesService } from './services/exchange-rates.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FileService } from './services/file.service';
+import { LoggerService } from './services/logger.service';
+import { envProdServiceLogger } from '../../environments/environment.prod';
 
 @NgModule({
   declarations: [],
@@ -12,7 +14,11 @@ import { FileService } from './services/file.service';
   ],
   providers: [
     ExchangeRatesService,
-    FileService
+    FileService,
+    {
+      provide: LoggerService,
+      useClass: envProdServiceLogger,
+    }
   ]
 })
 export class CoreModule { }

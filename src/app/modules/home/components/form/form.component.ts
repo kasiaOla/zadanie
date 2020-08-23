@@ -8,6 +8,7 @@ import { retry } from 'rxjs/internal/operators/retry';
 import * as converter from 'xml-js';
 import { saveAs } from 'file-saver';
 import { FileService } from '../../../../core/services/file.service';
+import { LoggerService } from '../../../../core/services/logger.service';
 
 @Component({
   selector: 'app-form',
@@ -25,7 +26,8 @@ export class FormComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private exchangeRatesService: ExchangeRatesService,
-              private fileService: FileService) {}
+              private fileService: FileService,
+              private loggerService: LoggerService) {}
 
   ngOnInit(): void {
     this.samplesForm = this.fb.group({
@@ -71,24 +73,24 @@ export class FormComponent implements OnInit {
 
           switch (Error.status) {
             case 400: {
-              console.error(`Bad Request. Error code ${Error.statusText}`);
+              this.loggerService.error(`Bad Request. Error code ${Error.statusText}`);
               retry(1);
               break;
             }
             case 404: {
-              console.error(`Not Found. Error code ${Error.statusText}`);
+              this.loggerService.error(`Not Found. Error code ${Error.statusText}`);
               retry(1);
               break;
             }
             case 503: {
-              console.error(`Service Unavailable. Error code ${Error.statusText}`);
+              this.loggerService.error(`Service Unavailable. Error code ${Error.statusText}`);
               retry(1);
               break;
             }
             default: {
-              console.error('Error name: ' + Error.error);
-              console.error('Error status text: ' + Error.statusText);
-              console.error('Error status: ' + Error.status);
+              this.loggerService.error('Error name: ' + Error.error);
+              this.loggerService.error('Error status text: ' + Error.statusText);
+              this.loggerService.error('Error status: ' + Error.status);
               break;
             }
           }

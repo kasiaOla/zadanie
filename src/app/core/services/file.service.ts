@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Settings } from '../../../environments/settings';
 import { retryWhen, delay, tap } from 'rxjs/operators';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private loggerService: LoggerService) { }
 
   public getFileXML(fileName: string, fileContent: any): Observable<Blob> {
    return this.httpClient.post(Settings.GET_FILE, { name: fileName, content: fileContent }, {
@@ -23,7 +25,7 @@ export class FileService {
             if (!errorStatus.startsWith('5')) {
               throw errorStatus;
             }
-            console.log('Retrying...');
+            this.loggerService.info('Retrying...');
           })
         )
       )
