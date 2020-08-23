@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { tap, share } from 'rxjs/operators';
 import { Exchange } from '../../shared/models/models';
 import { Observable } from 'rxjs';
+import { Settings } from '../../../environments/settings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExchangeRatesService {
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/xml' })
-  };
-
   constructor(private httpClient: HttpClient) { }
 
   public getExchangeRatesEUR(): Observable<Exchange> {
-    return this.httpClient.get<Exchange>('http://api.nbp.pl/api/exchangerates/rates/a/eur/last/1/',
+    return this.httpClient.get<Exchange>(Settings.NBP_EXCHANGE_RATES,
       {
         params: {
           format: 'json',
