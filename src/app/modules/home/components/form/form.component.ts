@@ -8,7 +8,6 @@ import { retry } from 'rxjs/internal/operators/retry';
 import * as converter from 'xml-js';
 import { saveAs } from 'file-saver';
 import { FileService } from '../../../../core/services/file.service';
-import { error } from 'console';
 
 @Component({
   selector: 'app-form',
