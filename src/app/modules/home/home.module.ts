@@ -20,4 +20,4 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent
   ],
 })
-export class HomeModule { }
+export class HomeModule {}
