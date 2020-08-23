@@ -17,15 +17,11 @@ import { FileService } from '../../../../core/services/file.service';
 export class FormComponent implements OnInit {
 
   currentDate = moment(new Date()).format('YYYY-MM-DD');
-  rowDataExchange: Rate[];
   mid: number;
   amountEURO: string;
   samplesForm: FormGroup;
-  outputXml: any;
   fileInputLabel: string;
-  dataUser: DataUser;
   nameDownloadedFile = 'download.xml';
-
 
   constructor(private fb: FormBuilder,
               private exchangeRatesService: ExchangeRatesService,
@@ -61,8 +57,8 @@ export class FormComponent implements OnInit {
     const respons = this.exchangeRatesService.getExchangeRatesEUR().subscribe({
       next: (Res: Exchange) => {
         if (Res && Res.rates) {
-          this.rowDataExchange = Res.rates;
-          this.rowDataExchange.forEach(objRate => {
+          const rowDataExchange: Rate[] = Res.rates;
+          rowDataExchange.forEach(objRate => {
             if (objRate) {
               this.mid = objRate.mid;
               this.amountEURO = (this.samplesForm.get('dailyAmountCommuting').value * objRate.mid).toPrecision(4);
@@ -107,7 +103,8 @@ export class FormComponent implements OnInit {
     if (this.samplesForm.dirty && this.samplesForm.valid) {
       let euro = this.samplesForm.get('dailyAmountCommuting').value * this.mid;
       euro = +(euro).toPrecision(4);
-      this.dataUser = {
+
+      const dataUser: DataUser = {
         dailyAmountCommuting: '' + euro,
         dateCompletingForm: this.samplesForm.get('dateCompletingForm').value,
         userFirstName: this.samplesForm.get('userFirstName').value,
@@ -115,10 +112,10 @@ export class FormComponent implements OnInit {
         userTown: this.samplesForm.get('userTown').value,
       };
 
-      const str = JSON.stringify(this.dataUser);
-      this.outputXml = converter.json2xml(str, { compact: true, spaces: 4 });
+      const str = JSON.stringify(dataUser);
+      const outputXml = converter.json2xml(str, { compact: true, spaces: 4 });
 
-      this.fileService.getFileXML(this.nameDownloadedFile, this.outputXml).subscribe(res => {
+      this.fileService.getFileXML(this.nameDownloadedFile, outputXml).subscribe(res => {
         saveAs(res, this.nameDownloadedFile);
       });
     }
