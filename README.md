@@ -2,9 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
+## Installation
+
+- npm install or npm i
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve --o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Run Node.js Server
+
+Run `node server.js` command with root set on `server`. It will start the server at `http://localhost:3000/` with the route set to root and print the message `Server started on port 3000`
+
 
 ## Code scaffolding
 
