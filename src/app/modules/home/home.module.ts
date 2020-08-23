@@ -4,7 +4,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { FormComponent } from './components/form/form.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ExchangeRatesService } from '../../core/services/exchange-rates.service';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,5 @@ import { ExchangeRatesService } from '../../core/services/exchange-rates.service
     FormComponent,
     HomeComponent
   ],
-  providers: [
-    ExchangeRatesService
-  ]
 })
 export class HomeModule { }

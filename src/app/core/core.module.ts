@@ -21,4 +21,4 @@ import { envProdServiceLogger } from '../../environments/environment.prod';
     }
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

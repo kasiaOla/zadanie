@@ -70,7 +70,6 @@ export class FormComponent implements OnInit {
       },
       error: (Error: Error) => {
         if (Error instanceof HttpErrorResponse) {
-
           switch (Error.status) {
             case 400: {
               this.loggerService.error(`Bad Request. Error code ${Error.statusText}`);
@@ -96,7 +95,7 @@ export class FormComponent implements OnInit {
           }
         }
       },
-      complete(): void { }
+      complete(): void {}
     });
   }
 
@@ -112,7 +111,6 @@ export class FormComponent implements OnInit {
         userLastName: this.samplesForm.get('userLastName').value,
         userTown: this.samplesForm.get('userTown').value,
       };
-
       const jsonDataUser = JSON.stringify(dataUser);
       const outputXml = converter.json2xml(jsonDataUser, { compact: true, spaces: 4 });
 
