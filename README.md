@@ -2,15 +2,22 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
-## Installation
+If you want to using the code from the GitHub repository, execute the following commands in the directory where you’d like to create the project directory:
 
+## 1. Get repository
+
+- git clone https://github.com/kasiaOla/zadanie.git
+
+## 2. Installation
+
+- cd zadanie
 - npm install or npm i
 
-## Development server
+## 3. Development server
 
 Run `ng serve --o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Run Node.js Server
+## 4. Run Node.js Server
 
 Run `node server.js` command with root set on `server`. It will start the server at `http://localhost:3000/` with the route set to root and print the message `Server started on port 3000`.
 
