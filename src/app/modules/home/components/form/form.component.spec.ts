@@ -6,6 +6,7 @@ import { FileService } from '../../../../core/services/file.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { LoggerService } from '../../../../core/services/logger.service';
 
 class MockFileService extends FileService { }
 
@@ -26,7 +27,8 @@ describe('FormComponent', () => {
           {
             provide: FileService,
             useClass: MockFileService
-          }
+          },
+          LoggerService
         ]
     })
       .compileComponents();

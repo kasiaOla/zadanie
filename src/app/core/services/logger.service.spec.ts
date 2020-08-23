@@ -8,12 +8,8 @@ describe('LoggerService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ],
-      providers: [
-        LoggerService
-      ]
+      imports: [HttpClientTestingModule],
+      providers: [LoggerService]
     });
     service = TestBed.inject(LoggerService);
   });

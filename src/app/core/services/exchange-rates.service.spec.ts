@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ExchangeRatesService } from './exchange-rates.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoggerService } from './logger.service';
 
 describe('ExchangeRatesService', () => {
   let service: ExchangeRatesService;
@@ -10,6 +11,7 @@ describe('ExchangeRatesService', () => {
       imports: [
         HttpClientTestingModule
       ],
+      providers: [LoggerService]
     });
     service = TestBed.inject(ExchangeRatesService);
   });
