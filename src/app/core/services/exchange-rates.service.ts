@@ -20,8 +20,8 @@ export class ExchangeRatesService {
         }
       },
     ).pipe(
-      tap(announcements => {
-        console.log('EUR!' + announcements)
+      tap(exchangeRates => {
+        console.log('EUR!' + exchangeRates);
       }), share()
     );
   }
