@@ -1,0 +1,9 @@
+.app {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    .app__page {
+        width: 100%;
+        background: #fafafa;
+    }
+}

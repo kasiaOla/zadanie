@@ -1,0 +1,20 @@
+@import '../variables.scss';
+.dashboard {
+    margin: 3rem 5rem;
+    .dashboard__heading {
+        margin-bottom: 2rem;
+        &.dashboard__heading--mail {
+            margin-bottom: 0;
+        }
+    }
+    .dashboard__section {
+        box-shadow: $box-shadow;
+        padding: 2rem 1rem;
+        margin-top: 2rem;
+        border-radius: .25rem;
+        &.dashboard__section--small {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@import "../../../../shared/scss/variables.scss";
+@import "../../../../shared/scss/components/dashboard.scss";
+form .ng-invalid.ng-touched,
+form .ng-invalid.ng-dirty {
+    border: 2px solid red !important;
+}
+
+form .ng-invalid.ng-touched~.validation-feedback,
+form .ng-invalid.ng-dirty~.validation-feedback {
+    color: red;
+}
+
+.my-custom-class .tooltip-inner {
+    background-color: darkgreen;
+    font-size: 125%;
+}
+
+.my-custom-class .arrow::before {
+    border-top-color: darkgreen;
+}
