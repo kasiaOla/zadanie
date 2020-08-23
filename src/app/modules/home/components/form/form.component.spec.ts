@@ -9,7 +9,6 @@ import { DebugElement } from '@angular/core';
 
 class MockFileService extends FileService { }
 
-
 describe('FormComponent', () => {
   let component: FormComponent;
   let fixture: ComponentFixture<FormComponent>;
@@ -44,7 +43,7 @@ describe('FormComponent', () => {
   });
 
   it(`should have as currentDate ${moment(new Date()).format('YYYY-MM-DD')}`, () => {
-    const fixture = TestBed.createComponent(FormComponent);
+    fixture = TestBed.createComponent(FormComponent);
     const app = fixture.componentInstance;
     expect(app.currentDate).toEqual('' + moment(new Date()).format('YYYY-MM-DD'));
   });

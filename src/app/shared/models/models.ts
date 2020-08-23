@@ -8,11 +8,11 @@ export interface Exchange {
 }
 
 export interface Rate {
+  no: string;
+  effectiveDate: string;
+  mid: number;
+}
 
-    no: string;
-    effectiveDate: string;
-    mid: number;
-  }
 export interface DataUser {
   dailyAmountCommuting: string;
   dateCompletingForm: Data;

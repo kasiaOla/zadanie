@@ -6,8 +6,6 @@ import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExchangeRatesService } from '../../core/services/exchange-rates.service';
 
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 @NgModule({
   declarations: [
     FormComponent,
