@@ -96,7 +96,6 @@ export class FormComponent implements OnInit {
       },
       complete(): void { }
     });
-
   }
 
   saveXML(): void {
@@ -112,8 +111,8 @@ export class FormComponent implements OnInit {
         userTown: this.samplesForm.get('userTown').value,
       };
 
-      const str = JSON.stringify(dataUser);
-      const outputXml = converter.json2xml(str, { compact: true, spaces: 4 });
+      const jsonDataUser = JSON.stringify(dataUser);
+      const outputXml = converter.json2xml(jsonDataUser, { compact: true, spaces: 4 });
 
       this.fileService.getFileXML(this.nameDownloadedFile, outputXml).subscribe(res => {
         saveAs(res, this.nameDownloadedFile);
