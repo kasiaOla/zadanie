@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import * as moment from 'moment';
 import { ExchangeRatesService } from '../../../../core/services/exchange-rates.service';
@@ -24,10 +24,12 @@ export class FormComponent implements OnInit {
   outputXml: any;
   fileInputLabel: string;
   dataUser: DataUser;
+  nameDownloadedFile = 'download.xml';
+
 
   constructor(private fb: FormBuilder,
               private exchangeRatesService: ExchangeRatesService,
-              private fileService: FileService) { }
+              private fileService: FileService) {}
 
   ngOnInit(): void {
     this.samplesForm = this.fb.group({
@@ -37,11 +39,11 @@ export class FormComponent implements OnInit {
       ]),
       userLastName: this.fb.control('', [
         Validators.required,
-        Validators.pattern(/^[A-Z .-]+[\s\p{L}]+$/u)
+        Validators.pattern(/^[A-Z]+[\s\p{L}]+$/u)
       ]),
       userTown: this.fb.control('', [
         Validators.required,
-        Validators.pattern(/^[A-Z .-]+[\s\p{L}]+$/u)
+        Validators.pattern(/^[A-Z]+[\s\p{L}]+$/u)
       ]),
       dateCompletingForm: this.fb.control(this.currentDate, [Validators.required]),
       dailyAmountCommuting: this.fb.control('', [Validators.required]),
@@ -114,10 +116,10 @@ export class FormComponent implements OnInit {
       };
 
       const str = JSON.stringify(this.dataUser);
-      this.outputXml = converter.json2xml(  str, { compact: true, spaces: 4 });
+      this.outputXml = converter.json2xml(str, { compact: true, spaces: 4 });
 
-      this.fileService.getFileXML('test.xml', this.outputXml).subscribe(res => {
-        saveAs(res, 'test.xml');
+      this.fileService.getFileXML(this.nameDownloadedFile, this.outputXml).subscribe(res => {
+        saveAs(res, this.nameDownloadedFile);
       });
     }
   }

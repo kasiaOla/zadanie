@@ -4,8 +4,6 @@ import { ExchangeRatesService } from './services/exchange-rates.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FileService } from './services/file.service';
 
-
-
 @NgModule({
   declarations: [],
   imports: [
