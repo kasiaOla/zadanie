@@ -8,6 +8,9 @@ import { retry } from 'rxjs/internal/operators/retry';
 import * as converter from 'xml-js';
 import { saveAs } from 'file-saver';
 import { FileService } from '../../../../core/services/file.service';
+import { combineLatest } from 'rxjs/internal/observable/combineLatest';
+import { pipe } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form',
@@ -26,8 +29,8 @@ export class FormComponent implements OnInit {
   dataUser: DataUser;
 
   constructor(private fb: FormBuilder,
-              private exchangeRatesService: ExchangeRatesService,
-              private fileService: FileService) { }
+    private exchangeRatesService: ExchangeRatesService,
+    private fileService: FileService) { }
 
   ngOnInit(): void {
     this.samplesForm = this.fb.group({
@@ -116,8 +119,7 @@ export class FormComponent implements OnInit {
       const str = JSON.stringify(this.dataUser);
       this.outputXml = converter.json2xml(str, { compact: true, spaces: 4 });
 
-      this.fileService.upload('test', this.outputXml);
-      this.fileService.download('test.xml').subscribe(res => {
+      this.fileService.getFileXML('test.xml', this.outputXml).subscribe(res => {
         saveAs(res, 'test.xml');
       });
     }
