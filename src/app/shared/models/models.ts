@@ -1,5 +1,3 @@
-import { Data } from '@angular/router';
-
 export interface Exchange {
   table: string;
   currency: string;
@@ -15,7 +13,7 @@ export interface Rate {
 
 export interface DataUser {
   dailyAmountCommuting: string;
-  dateCompletingForm: Data;
+  dateCompletingForm: Date;
   userFirstName: string;
   userLastName: string;
   userTown: string;
