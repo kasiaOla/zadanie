@@ -23,7 +23,6 @@ export class FormComponent implements OnInit {
   amountEURO: string;
   samplesForm: FormGroup;
   outputXml: any;
-  @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
   fileInputLabel: string;
   dataUser: DataUser;
 
