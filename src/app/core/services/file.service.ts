@@ -9,10 +9,6 @@ import { Settings } from '../../../environments/settings';
 })
 export class FileService {
 
-  private fileList: string[] = new Array<string>();
-  private fileList$: Subject<string[]> = new Subject<string[]>();
-  private displayLoader$: Subject<boolean> = new BehaviorSubject<boolean>(false);
-
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/xml'}).set(  'Accept' ,  'application/xml, text/plain, */*' )
   };
@@ -20,14 +16,13 @@ export class FileService {
   constructor(private httpClient: HttpClient) { }
 
   public upload(fileName: string, fileContent: any): void {
-    this.displayLoader$.next(true);
     this.httpClient.put(Settings.FILES  , {name: fileName, content: fileContent}, this.httpOptions)
     .pipe()
     .subscribe(res => {
     }, error => {
     });
   }
-  public download(fileName: string) {
+  public download(fileName: string): Observable<Blob> {
     const body = { filename: fileName };
     return this.httpClient.post(Settings.DOWNLOAD, body, {
       responseType: 'blob',
