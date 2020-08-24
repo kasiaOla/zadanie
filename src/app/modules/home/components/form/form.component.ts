@@ -9,8 +9,6 @@ import * as converter from 'xml-js';
 import { saveAs } from 'file-saver';
 import { FileService } from '../../../../core/services/file/file.service';
 import { LoggerService } from '../../../../core/services/logger/logger.service';
-import { map } from 'rxjs/internal/operators/map';
-import { share, switchMap } from 'rxjs/operators';
 import { Settings } from '../../../../../environments/settings';
 declare const require;
 var xml2js = require('xml2js');
@@ -32,8 +30,9 @@ export class FormComponent implements OnInit {
   searchValue: string;
 
   constructor(private exchangeRatesService: ExchangeRatesService,
-    private fileService: FileService, private httpClient: HttpClient,
-    private loggerService: LoggerService) { }
+              private fileService: FileService,
+              private httpClient: HttpClient,
+              private loggerService: LoggerService) {}
 
   ngOnInit(): void {
     this.loadXML();
@@ -136,8 +135,7 @@ export class FormComponent implements OnInit {
   loadXML(): void {
     this.httpClient.get(Settings.GET_CITY,
       {
-        headers: new HttpHeaders()
-          .set('Content-Type', 'text/xml'),
+        headers: new HttpHeaders().set('Content-Type', 'text/xml'),
         responseType: 'text'
       })
       .subscribe((data) => {
