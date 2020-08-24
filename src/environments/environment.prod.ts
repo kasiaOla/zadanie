@@ -1,4 +1,4 @@
-import { LoggerDebugService } from '../app/core/services/logger.service';
+import { LoggerDebugService } from '../app/core/services/logger/logger.service';
 export const environment = {
   production: true
 };

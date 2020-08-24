@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { ExchangeRatesService } from './exchange-rates.service';
+import { FileService } from './file.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { LoggerService } from './logger.service';
+import { LoggerService } from '../logger/logger.service';
 
-describe('ExchangeRatesService', () => {
-  let service: ExchangeRatesService;
+describe('FileService', () => {
+  let service: FileService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -13,7 +13,7 @@ describe('ExchangeRatesService', () => {
       ],
       providers: [LoggerService]
     });
-    service = TestBed.inject(ExchangeRatesService);
+    service = TestBed.inject(FileService);
   });
 
   it('should be created', () => {

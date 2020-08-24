@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
-import { LoggerService } from '../../../core/services/logger.service';
+import { LoggerService } from '../../../core/services/logger/logger.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

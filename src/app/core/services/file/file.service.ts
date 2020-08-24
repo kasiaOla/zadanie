@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Settings } from '../../../environments/settings';
+import { Settings } from '../../../../environments/settings';
 import { retryWhen, delay, tap } from 'rxjs/operators';
-import { LoggerService } from './logger.service';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'

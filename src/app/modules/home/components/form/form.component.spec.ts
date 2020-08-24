@@ -6,7 +6,7 @@ import { FileService } from '../../../../core/services/file.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { LoggerService } from '../../../../core/services/logger.service';
+import { LoggerService } from '../../../../core/services/logger/logger.service';
 
 class MockFileService extends FileService { }
 

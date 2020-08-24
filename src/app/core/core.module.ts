@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExchangeRatesService } from './services/exchange-rates.service';
+import { ExchangeRatesService } from './services/exchange-rates/exchange-rates.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FileService } from './services/file.service';
-import { LoggerService } from './services/logger.service';
+import { FileService } from './services/file/file.service';
+import { LoggerService } from './services/logger/logger.service';
 import { envProdServiceLogger } from '../../environments/environment.prod';
 
 @NgModule({

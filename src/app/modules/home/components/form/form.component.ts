@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import { ExchangeRatesService } from '../../../../core/services/exchange-rates.service';
+import { ExchangeRatesService } from '../../../../core/services/exchange-rates/exchange-rates.service';
 import { Exchange, Rate, DataUser } from '../../../../shared/models/models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { retry } from 'rxjs/internal/operators/retry';
 import * as converter from 'xml-js';
 import { saveAs } from 'file-saver';
-import { FileService } from '../../../../core/services/file.service';
-import { LoggerService } from '../../../../core/services/logger.service';
+import { FileService } from '../../../../core/services/file/file.service';
+import { LoggerService } from '../../../../core/services/logger/logger.service';
 
 @Component({
   selector: 'app-form',

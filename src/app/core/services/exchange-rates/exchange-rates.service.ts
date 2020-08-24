@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, share } from 'rxjs/operators';
-import { Exchange } from '../../shared/models/models';
+import { Exchange } from '../../../shared/models/models';
 import { Observable } from 'rxjs';
-import { Settings } from '../../../environments/settings';
-import { LoggerService } from './logger.service';
+import { Settings } from '../../../../environments/settings';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
