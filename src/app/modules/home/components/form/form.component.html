@@ -44,16 +44,9 @@
                             <div class="form-group">
                                 <label for="userTown">Miasto<sup>*</sup></label>
                                 <input type="text" class="form-control" formControlName="userTown" (keyup)="search($event.target.value)" placeholder="Wprowadź znaki ..." />
-
-                                <!-- <div class="list-group">
-                                  <div class="list-group-item" *ngFor="let option of arr">
-                                      {{option.NAZWA}}
-                                  </div>
-                              </div> -->
-
                                 <div class="list-group">
-                                    <select class="form-control" *ngFor="let option of arr   | slice:0: 10 ">
-                                  <option value="option.NAZWA" > {{option.NAZWA}}</option>
+                                    <select class="form-control" *ngFor="let option of arr | slice:0: 5">
+                                  <option value="option.NAZWA"> {{option.NAZWA}}</option>
                                 </select>
                                 </div>
                                 <div class="validation-feedback" *ngIf="samplesForm.get('userTown').touched || samplesForm.get('userTown').dirty">
@@ -61,10 +54,6 @@
                                         Miasto użytkownika jest wymagane!
                                     </div>
                                 </div>
-
-
-
-
                             </div>
                             <div class="form-group">
                                 <label for="dateCompletingForm">Data wypełnienia formularza<sup>*</sup></label>

@@ -30,9 +30,9 @@ export class FormComponent implements OnInit {
   searchValue: string;
 
   constructor(private exchangeRatesService: ExchangeRatesService,
-              private fileService: FileService,
-              private httpClient: HttpClient,
-              private loggerService: LoggerService) {}
+    private fileService: FileService,
+    private httpClient: HttpClient,
+    private loggerService: LoggerService) { }
 
   ngOnInit(): void {
     this.loadXML();
@@ -157,9 +157,9 @@ export class FormComponent implements OnInit {
         const obj = result.teryt;
 
         for (const index of obj.row) {
-             this.arr.push({
-              NAZWA: index.NAZWA[0]
-            });
+          this.arr.push({
+            NAZWA: index.NAZWA[0]
+          });
         }
         resolve(this.arr);
       });
@@ -168,6 +168,8 @@ export class FormComponent implements OnInit {
 
   search(value: string): void {
     this.searchValue = value;
-    this.arr = this.arr.filter(valueFilter => valueFilter.NAZWA[0].indexOf(this.searchValue) >= 0);
+    this.arr = this.arr.filter(valueFilter =>
+      valueFilter.NAZWA.indexOf(this.searchValue) >= 0
+    );
   }
 }
