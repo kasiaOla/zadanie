@@ -3,12 +3,18 @@ import { FormGroup, Validators, AbstractControl, FormControl } from '@angular/fo
 import * as moment from 'moment';
 import { ExchangeRatesService } from '../../../../core/services/exchange-rates/exchange-rates.service';
 import { Exchange, Rate, DataUser } from '../../../../shared/models/models';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry } from 'rxjs/internal/operators/retry';
 import * as converter from 'xml-js';
 import { saveAs } from 'file-saver';
 import { FileService } from '../../../../core/services/file/file.service';
 import { LoggerService } from '../../../../core/services/logger/logger.service';
+import { map } from 'rxjs/internal/operators/map';
+import { share, switchMap } from 'rxjs/operators';
+import { Settings } from '../../../../../environments/settings';
+declare const require;
+var xml2js = require('xml2js');
+
 
 @Component({
   selector: 'app-form',
@@ -16,20 +22,21 @@ import { LoggerService } from '../../../../core/services/logger/logger.service';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-
+  public arr = [];
+  public xmlItems: any;
   currentDate = moment(new Date()).format('YYYY-MM-DD');
   mid: number;
   amountEURO: string;
   samplesForm: FormGroup;
   nameDownloadedFile = 'download.xml';
-  arr = this.fileService.loadXML();
+  searchValue: string;
+
   constructor(private exchangeRatesService: ExchangeRatesService,
-              private fileService: FileService,
-              private loggerService: LoggerService) {}
+    private fileService: FileService, private httpClient: HttpClient,
+    private loggerService: LoggerService) { }
 
   ngOnInit(): void {
-
-
+    this.loadXML();
     this.samplesForm = new FormGroup({
       userFirstName: new FormControl('', [
         Validators.required,
@@ -43,7 +50,7 @@ export class FormComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[A-Z]+[\s\p{L}]+$/u)
       ]),
-      dateCompletingForm: new FormControl({value: this.currentDate, disabled: true} , Validators.required),
+      dateCompletingForm: new FormControl({ value: this.currentDate, disabled: true }, Validators.required),
       dailyAmountCommuting: new FormControl('', Validators.required),
     });
     this.samplesForm.get('dateCompletingForm').setValue(this.currentDate);
@@ -95,7 +102,7 @@ export class FormComponent implements OnInit {
           }
         }
       },
-      complete(): void {}
+      complete(): void { }
     });
   }
 
@@ -124,5 +131,45 @@ export class FormComponent implements OnInit {
     if (this.samplesForm.dirty && this.samplesForm.valid) {
       window.print();
     }
+  }
+
+  loadXML(): void {
+    this.httpClient.get(Settings.GET_CITY,
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'text/xml'),
+        responseType: 'text'
+      })
+      .subscribe((data) => {
+        this.parseXML(data)
+          .then((data) => {
+            return this.xmlItems = data;
+          });
+      });
+  }
+  parseXML(data): Promise<any> {
+    return new Promise(resolve => {
+      this.arr = [];
+      const parser = new xml2js.Parser({
+        trim: true,
+        explicitArray: true
+      });
+      parser.parseString(data, (err, result) => {
+
+        const obj = result.teryt;
+
+        for (const index of obj.row) {
+             this.arr.push({
+              NAZWA: index.NAZWA[0]
+            });
+        }
+        resolve(this.arr);
+      });
+    });
+  }
+
+  search(value: string): void {
+    this.searchValue = value;
+    this.arr = this.arr.filter(valueFilter => valueFilter.NAZWA[0].indexOf(this.searchValue) >= 0);
   }
 }

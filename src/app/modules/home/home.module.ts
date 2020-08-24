@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatAutocompleteModule,
     BrowserAnimationsModule
   ],
   exports: [

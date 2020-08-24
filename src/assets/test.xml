@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Employees>
+<teryt>
  <row>
       <WOJ>02</WOJ>
       <POW />
@@ -9540,4 +9540,4 @@
       <NAZWA_DOD>gmina wiejska</NAZWA_DOD>
       <STAN_NA>2020-01-01</STAN_NA>
     </row>
-</Employees>
+</teryt>
