@@ -17,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule.withServerTransition({
       appId: 'serverApp'
     }),
-    BrowserModule,
     AppRoutingModule,
     HomeRoutingModule,
     HomeModule,

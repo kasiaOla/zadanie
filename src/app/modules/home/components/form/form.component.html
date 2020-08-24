@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="dateCompletingForm">Data wypełnienia formularza<sup>*</sup></label>
-                                <input type="date" class="form-control" formControlName="dateCompletingForm" disabled/>
+                                <input type="date" class="form-control" formControlName="dateCompletingForm" />
                                 <div class="validation-feedback" *ngIf="samplesForm.get('dateCompletingForm').touched || samplesForm.get('dateCompletingForm').dirty">
                                     <div *ngIf="samplesForm.get('dateCompletingForm').hasError('required')">
                                         Data wypełnienia formularza jest wymagana!
