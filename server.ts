@@ -1,5 +1,4 @@
 import 'zone.js/dist/zone-node';
-
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { join } from 'path';
 import { existsSync } from 'fs';
@@ -11,7 +10,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 const bodyParser = require('body-parser');
 
-export function app(): express.Express {
+
+export function appServer(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/zadanie/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
@@ -42,24 +42,25 @@ export function app(): express.Express {
 
   server.post('/api/get-file', (req: Request, res: Response) => {
     const file = req.body;
-    fs.writeFile(path.join(__dirname) + '/' + file.name, file.content, (err) => {
+    fs.writeFile(path.join(__dirname) + file.name, file.content, (err) => {
       if (err) {
         res.status(500).json({
           success: false,
           message: 'Error code: ' + err.code + ' Error processing request ' + err
         });
       } else {
-        const filePath = path.join(__dirname) + '/' + file.name;
+        const filePath = path.join(__dirname) + file.name;
         res.status(200).sendFile(filePath);
       }
     });
   });
+
   return server;
 }
 
 function run(): void {
   const port = process.env.PORT || 4200;
-  const server = app();
+  const server = appServer();
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });

@@ -22,12 +22,14 @@ export class FormComponent implements OnInit {
   amountEURO: string;
   samplesForm: FormGroup;
   nameDownloadedFile = 'download.xml';
-
+  arr = this.fileService.loadXML();
   constructor(private exchangeRatesService: ExchangeRatesService,
               private fileService: FileService,
               private loggerService: LoggerService) {}
 
   ngOnInit(): void {
+
+
     this.samplesForm = new FormGroup({
       userFirstName: new FormControl('', [
         Validators.required,

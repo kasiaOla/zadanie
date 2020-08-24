@@ -49,6 +49,12 @@
                                         Miasto użytkownika jest wymagane!
                                     </div>
                                 </div>
+
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <!-- <mat-option *ngFor="let option of arr" [value]="option">
+                                        {{option.NAZWA}}
+                                    </mat-option> -->
+                                </mat-autocomplete>
                             </div>
                             <div class="form-group">
                                 <label for="dateCompletingForm">Data wypełnienia formularza<sup>*</sup></label>
