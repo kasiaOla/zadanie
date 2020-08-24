@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeRoutingModule } from './modules/home/home-routing.module';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from './core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -13,11 +14,15 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     CommonModule,
+    BrowserModule.withServerTransition({
+      appId: 'serverApp'
+    }),
     BrowserModule,
     AppRoutingModule,
     HomeRoutingModule,
     HomeModule,
-    CoreModule
+    CoreModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

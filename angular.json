@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/zadanie",
+                        "outputPath": "dist/zadanie/browser",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -120,6 +120,41 @@
                     "configurations": {
                         "production": {
                             "devServerTarget": "zadanie:serve:production"
+                        }
+                    }
+                },
+                "server": {
+                    "builder": "@angular-devkit/build-angular:server",
+                    "options": {
+                        "outputPath": "dist/zadanie/server",
+                        "main": "server.ts",
+                        "tsConfig": "tsconfig.server.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }],
+                            "sourceMap": false,
+                            "optimization": {
+                                "scripts": false,
+                                "styles": true
+                            }
+                        },
+                        "aot": true
+                    }
+                },
+                "serve-ssr": {
+                    "builder": "@nguniversal/builders:ssr-dev-server",
+                    "options": {
+                        "browserTarget": "zadanie:build",
+                        "serverTarget": "zadanie:server"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "zadanie:build:production",
+                            "serverTarget": "zadanie:server:production"
                         }
                     }
                 }

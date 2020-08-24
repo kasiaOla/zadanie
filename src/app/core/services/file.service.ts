@@ -12,9 +12,9 @@ export class FileService {
 
   constructor(private httpClient: HttpClient,
               private loggerService: LoggerService) { }
-
+// Settings.GET_FILE
   public getFileXML(fileName: string, fileContent: any): Observable<Blob> {
-   return this.httpClient.post(Settings.GET_FILE, { name: fileName, content: fileContent }, {
+   return this.httpClient.post('/api/get-file', { name: fileName, content: fileContent }, {
       responseType: 'blob',
       headers: new HttpHeaders({ 'Content-Type': 'application/xml' }).set('Accept', 'application/xml, text/plain, */*')
     }).pipe(
@@ -22,9 +22,9 @@ export class FileService {
         errors.pipe(
           delay(1000),
           tap(errorStatus => {
-            if (!errorStatus.startsWith('5')) {
-              throw errorStatus;
-            }
+            // if (!errorStatus.startsWith('5')) {
+            //   throw errorStatus;
+            // }
             this.loggerService.info('Retrying...');
           })
         )

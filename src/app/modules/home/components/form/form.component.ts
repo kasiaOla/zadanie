@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { ExchangeRatesService } from '../../../../core/services/exchange-rates.service';
 import { Exchange, Rate, DataUser } from '../../../../shared/models/models';
@@ -30,21 +30,21 @@ export class FormComponent implements OnInit {
               private loggerService: LoggerService) {}
 
   ngOnInit(): void {
-    this.samplesForm = this.fb.group({
-      userFirstName: this.fb.control('', [
+    this.samplesForm = new FormGroup({
+      userFirstName: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[A-Z]+[\s\p{L}]+$/u)
       ]),
-      userLastName: this.fb.control('', [
+      userLastName: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[A-Z]+[\s\p{L}]+$/u)
       ]),
-      userTown: this.fb.control('', [
+      userTown: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[A-Z]+[\s\p{L}]+$/u)
       ]),
-      dateCompletingForm: this.fb.control(this.currentDate, [Validators.required]),
-      dailyAmountCommuting: this.fb.control('', [Validators.required]),
+      dateCompletingForm: new FormControl({value: this.currentDate, disabled: true} , Validators.required),
+      dailyAmountCommuting: new FormControl('', Validators.required),
     });
     this.samplesForm.get('dateCompletingForm').setValue(this.currentDate);
   }

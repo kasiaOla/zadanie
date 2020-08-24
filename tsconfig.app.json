@@ -3,8 +3,10 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "module": "commonjs",
     "types": [
-      "node"
+      "jest",
+      "node",
     ]
   },
   "files": [
@@ -12,6 +14,12 @@
     "src/polyfills.ts"
   ],
   "include": [
+    "src/**/*.ts",
     "src/**/*.d.ts"
-  ]
+  ],
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ],
+  "typeRoots": ["./node_modules/@types"],
 }
