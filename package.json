@@ -10,8 +10,7 @@
         "e2e": "ng e2e",
         "dev:ssr": "ng run zadanie:serve-ssr",
         "serve:ssr": "node dist/zadanie/server/main.js",
-        "build:ssr": "ng build --prod && ng run zadanie:server:production",
-        "prerender": "ng run zadanie:prerender"
+        "build:ssr": "ng build --prod && ng run zadanie:server:production"
     },
     "private": true,
     "dependencies": {
