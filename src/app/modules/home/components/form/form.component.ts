@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { ExchangeRatesService } from '../../../../core/services/exchange-rates.service';
 import { Exchange, Rate, DataUser } from '../../../../shared/models/models';
@@ -21,11 +21,9 @@ export class FormComponent implements OnInit {
   mid: number;
   amountEURO: string;
   samplesForm: FormGroup;
-  fileInputLabel: string;
   nameDownloadedFile = 'download.xml';
 
-  constructor(private fb: FormBuilder,
-              private exchangeRatesService: ExchangeRatesService,
+  constructor(private exchangeRatesService: ExchangeRatesService,
               private fileService: FileService,
               private loggerService: LoggerService) {}
 
