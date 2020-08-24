@@ -13,13 +13,14 @@ If you want to using the code from the GitHub repository, execute the following 
 - cd zadanie
 - npm install or npm i
 
-## 3. Development server
+## 3. Compilation 
 
-Run `ng serve --o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng build --prod && ng run zadanie:server:production` command in the project's root directory.
 
-## 4. Run Node.js Server
+## 4. Development Server-side rendering (SSR)
 
-Run `node server.js` command with root set on `server`. It will start the server at `http://localhost:3000/` with the route set to root and print the message `Server started on port 3000`.
+Run `ng run zadanie:serve-ssr` for a dev server. Navigate to `http://localhost:4200/`. 
+Angular Universal executes on the server, generating static application pages that later get bootstrapped on the client.
 
 
 ## Code scaffolding

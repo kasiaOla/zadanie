@@ -7,7 +7,7 @@ import {join} from 'path';
 import { existsSync } from 'fs';
 import { AppServerModule } from './src/app/app.server.module';
 import { APP_BASE_HREF } from '@angular/common';
-const fs = require('fs');
+import * as fs from 'fs';
 import * as path from 'path';
 import { Request, Response, NextFunction } from 'express';
 
